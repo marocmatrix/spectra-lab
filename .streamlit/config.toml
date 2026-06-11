@@ -1,0 +1,17 @@
+# .streamlit/config.toml — server settings for running behind Cloudflare.
+[server]
+headless = true
+address = "0.0.0.0"
+port = 8501
+# Cloudflare terminates TLS and proxies to this port; trust the forwarded headers.
+enableCORS = false
+enableXsrfProtection = true
+# Raise if you upload large spectral libraries (MB).
+maxUploadSize = 200
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "light"
+primaryColor = "#7fb069"
