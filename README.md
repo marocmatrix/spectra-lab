@@ -47,7 +47,7 @@ RPD > 2 usable, > 2.5 good, > 3 excellent for screening.
 ## Quick start
 
 ```bash
-git clone https://github.com/<your-username>/spectra-lab.git
+git clone https://github.com/marocmatrix/spectra-lab.git
 cd spectra-lab
 pip install -r requirements.txt
 streamlit run app.py
