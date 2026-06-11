@@ -1,0 +1,31 @@
+# spectra-lab.service — run Spectra-Lab as a background service on the Pi.
+#
+# Install:
+#   1. Edit the three CHANGE-ME placeholders below to match your Pi.
+#   2. sudo cp spectra-lab.service /etc/systemd/system/spectra-lab.service
+#   3. sudo systemctl daemon-reload
+#   4. sudo systemctl enable --now spectra-lab
+#   5. systemctl status spectra-lab   # confirm it's running
+#
+# Logs:  journalctl -u spectra-lab -f
+
+[Unit]
+Description=Spectra-Lab soil prediction (Streamlit)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# CHANGE-ME: the user that owns the app folder (often "pi" or your username)
+User=pi
+# CHANGE-ME: absolute path to the app folder
+WorkingDirectory=/home/pi/soil-app
+# CHANGE-ME: same folder, pointing at the venv's streamlit binary
+ExecStart=/home/pi/soil-app/.venv/bin/streamlit run /home/pi/soil-app/app.py
+Restart=on-failure
+RestartSec=5
+# Keep Streamlit's config discoverable
+Environment=HOME=/home/pi
+
+[Install]
+WantedBy=multi-user.target
