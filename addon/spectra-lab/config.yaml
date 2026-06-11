@@ -1,0 +1,22 @@
+name: Spectra-Lab
+version: "1.0.0"
+slug: spectra_lab
+description: Soil property prediction from spectra (PLSR, RF, SVR, k-NN, Ridge, PCR)
+url: https://github.com/marocmatrix/spectra-lab
+arch:
+  - aarch64
+  - amd64
+init: false
+# Ingress lets you open the app from the HA sidebar, no extra port or login.
+ingress: true
+ingress_port: 8501
+panel_icon: mdi:grain
+panel_title: Spectra-Lab
+# Also expose 8501 directly on the LAN (optional; set to null in the UI to disable)
+ports:
+  "8501/tcp": 8501
+ports_description:
+  "8501/tcp": Streamlit web UI (direct LAN access; optional)
+# Persist exported model bundles + uploads under /share/spectra-lab
+map:
+  - share:rw
